@@ -1,0 +1,10 @@
+^C:\USERS\TRENT\ONEDRIVE\CODING_PROJECTS\NCURSES_TEST\BUILD\CMAKEFILES\983BCEF28920B2FD11F0B21B9BF0ED1F\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/trent/OneDrive/Coding_Projects/ncurses_test -BC:/Users/trent/OneDrive/Coding_Projects/ncurses_test/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/trent/OneDrive/Coding_Projects/ncurses_test/build/CodeEditor.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
