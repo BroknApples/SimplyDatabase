@@ -16,6 +16,9 @@
 namespace SimDB {
   /**
    * @brief Stores all data from a .simdb database, including the headertokens and raw data
+   * 
+   * NOTE: When indexing data, the table does not start at index '0', it starts at index '1'
+   * so the more "common folk" can understand easily
    */
   class SimDBData {
    private:
@@ -28,28 +31,30 @@ namespace SimDB {
     /** Holds all the data of the table in it's given rows + columns. Used to display the table state */
     std::vector<std::vector<std::any>> _table_data;
 
-    int _row_count;     /** How many rows are in the table */
-    int _column_count;  /** How many columns are in each row of the table */
+    size_t _row_count;     /** How many rows are in the table */
+    size_t _column_count;  /** How many columns are in each row of the table */
 
     void _refreshTableRowSize();
     void _refreshTableColumnSize();
 
    public:
     SimDBData();
-    SimDBData(const int row_count, const int column_count);
+    SimDBData(const size_t row_count, const size_t column_count);
     SimDBData(const SimDBData& other);
+
+    
 
     /**
      * @brief Get the number of rows in the database
-     * @returns int: Row amount
+     * @returns size_t: Row amount
      */
-    const int getRowCount() const { return _row_count; }
+    const size_t getRowCount() const { return _row_count; }
 
     /**
      * @brief Get the number of columns in the database
-     * @returns int: Column amount
+     * @returns size_t: Column amount
      */
-    const int getColumnCount() const { return _column_count; }
+    const size_t getColumnCount() const { return _column_count; }
 
     /**
      * @brief Get the entire database table
@@ -57,22 +62,22 @@ namespace SimDB {
      */
     const std::vector<std::vector<std::any>>& getTable() const { return _table_data; }
 
-    bool setRowCount(const int row_count);
-    bool setColumnCount(const int column_count);
+    bool setRowCount(const size_t row_count);
+    bool setColumnCount(const size_t column_count);
 
     void addRow();
-    void addRows(const int additional_rows);
+    void addRows(const size_t additional_rows);
     void addColumn();
-    void addColumns(const int additional_columns);
+    void addColumns(const size_t additional_columns);
 
     void removeRow();
-    void removeRowAtIndex(const int index);
+    void removeRowAtIndex(const size_t index);
     void removeColumn();
-    void removeColumnAtIndex(const int index);
+    void removeColumnAtIndex(const size_t index);
 
-    const std::vector<std::any> getDataAtRow(const int row);
-    const std::any getDataAtPosition();
-    void insertAtPosition(const int row, const int column);
+    const std::vector<std::any>& getDataAtRow(size_t row) const;
+    const std::any& getDataAtPosition(size_t row, size_t column) const;
+    void insertDataAtPosition(size_t row, size_t column, const std::any& data);
   };  
 }
 

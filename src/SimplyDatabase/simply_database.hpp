@@ -1,6 +1,10 @@
 #ifndef SIMPLY_DATABASE_HPP
 #define SIMPLY_DATABASE_HPP
 
+/**
+ * This file is the main implementation of the Simply Database codebase.
+ * This is the only code you should interact with when implementing
+ */
 
 /**
  * @brief SimDB Namespace
