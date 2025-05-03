@@ -32,15 +32,21 @@ namespace SimDB {
    * @param filename: Name of the new file
    * @throws std::invalid_argument(Error:SimDB::INVALID_FILENAME)
    */
-  SimDBFile::SimDBFile(const std::string& filename) : _filename(""), _database_stack(nullptr) {
+  SimDBFile::SimDBFile(const std::string& filename, const SimDBData& file_data) : _filename(""), _file_data(file_data) {
     // Check if the filename is valid : throw if invalid
     if (!_isValidFilename(filename)) {
       throw std::invalid_argument(Error::SimDBFile::INVALID_FILENAME);
     }
 
     _filename = filename;
-    _database_stack = std::make_unique<DatabaseStack>(new DatabaseStack());
   }
+
+  /**
+   * @brief Copy Constructor
+   */
+  SimDBFile::SimDBFile(const SimDBFile& other)
+  : _filename(other._filename)
+  , _file_data(other._file_data) {}
 
   /**
    * @brief Save a .simdb file
@@ -58,7 +64,7 @@ namespace SimDB {
    * @param database_stack: Database stack to save from
    * @returns bool: True/False of success
    */
-  const bool saveFile(const std::string& filename, std::unique_ptr<DatabaseStack> database_stack) {
+  const bool saveFile(const std::string& filename, const SimDBData& file_data) {
     if (!_isValidFilename(filename)) return false;
 
 
@@ -82,7 +88,7 @@ namespace SimDB {
    * @param database_stack: DatabaseStack data type to store information in
    * @returns bool: True/False of success
    */
-  const bool readFile(const std::string& filename, std::unique_ptr<DatabaseStack> database_stack) {
+  const bool readFile(const std::string& filename, const SimDBData& file_data) {
     if (!_isValidFilename(filename)) return false;
 
 

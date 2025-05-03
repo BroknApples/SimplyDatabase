@@ -2,7 +2,9 @@
 #define UTILS_HPP
 
 /**
+ * 
  * This file includes all utility files into one
+ * 
  */
 
 #include "errors.hpp"

@@ -8,10 +8,12 @@
  */
 
 #include <string>
+#include <queue>
+#include <any>
 #include <memory>
 #include <stdexcept>
-#include "database_stack.hpp"
 #include "simdb_header.hpp"
+#include "simdb_file_data.hpp"
 #include "../Utils/utils.hpp"
 
 namespace SimDB {
@@ -38,20 +40,23 @@ namespace SimDB {
    private:
     /** Name of the .simdb file object */
     std::string _filename;
-    std::unique_ptr<DatabaseStack> _database_stack;
-  
+
+    /** Data of the .simdb file object */
+    SimDBData _file_data;
+    
     bool _isValidFilename(const std::string& filename);
 
    public:
     /** File extenstion of a .simdb file */
     static const std::string FILE_EXTENSION;
   
-    SimDBFile(const std::string& filename);
+    SimDBFile(const std::string& filename, const SimDBData& file_data);
+    SimDBFile(const SimDBFile& other);
   
     const bool saveFile();
-    static const bool saveFile(const std::string& filename);
+    static const bool saveFile(const std::string& filename, const SimDBData& file_data);
     const bool readFile();
-    static const bool readFile(const std::string& filename, std::unique_ptr<DatabaseStack> database_stack);
+    static const bool readFile(const std::string& filename, const SimDBData& file_data);
   };
 }
 

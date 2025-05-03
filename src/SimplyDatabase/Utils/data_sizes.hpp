@@ -3,7 +3,7 @@
 
 /**
  * 
- * NOTE: This file declares sizes for different basic data types like Megabytes and Kilobytes
+ * This file declares sizes for different basic data types like Megabytes and Kilobytes
  * 
  */
 

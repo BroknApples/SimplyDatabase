@@ -2,7 +2,9 @@
 #define ERRORS_HPP
 
 /**
+ * 
  * This file defines all error codes for different occurences in this Framework
+ * 
  */
 
 #include <string>
